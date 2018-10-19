@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="JMF2.1">
+    <CLASSES>
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/customizer.jar!/" />
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/jmf.jar!/" />
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/mediaplayer.jar!/" />
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/multiplayer.jar!/" />
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/sound.jar!/" />
+      <root url="jar://C:/Program Files (x86)/JMF2.1.1e/lib/mp3plugin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
