@@ -18,7 +18,7 @@
       <file leaf-file-name="AudioPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-333">
+            <state relative-caret-position="153">
               <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -32,22 +32,13 @@
       <file leaf-file-name="MusicForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="249" column="38" selection-start-line="249" selection-start-column="38" selection-end-line="249" selection-end-column="38" />
+            <state relative-caret-position="369">
+              <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#909#910#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#3308#3309#0" expanded="true" />
-                <element signature="e#3372#3373#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MusicForm.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
-          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
       <file leaf-file-name="NoteIcon.java" pinned="false" current-in-tab="false">
@@ -62,8 +53,8 @@
       <file leaf-file-name="NoteLabel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+            <state relative-caret-position="102">
+              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -71,7 +62,7 @@
       <file leaf-file-name="Lab.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Lab.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="374">
               <caret line="26" column="43" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -116,6 +107,9 @@
       <replace>notesPlay</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -133,7 +127,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="width" value="979" />
+    <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -143,7 +137,6 @@
     <panes>
       <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,6 +153,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,19 +278,18 @@
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
       <window_info id="DB Browser" order="7" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.65954417" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.15637584" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.15838926" />
       <window_info id="Structure" order="6" sideWeight="0.5014245" side_tool="true" weight="0.1409396" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
@@ -304,41 +297,42 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.54415953" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="4" />
-      <window_info id="Designer" order="0" />
+      <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.65954417" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" weight="0.15637584" />
       <window_info id="Structure" order="6" sideWeight="0.5014245" side_tool="true" weight="0.1409396" />
-      <window_info anchor="bottom" id="DB Execution Console" order="11" />
-      <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
+      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info id="DB Browser" order="7" />
       <window_info id="Image Layers" order="4" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.54415953" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info id="DB Browser" order="7" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -378,6 +372,54 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2204#2205#0" expanded="true" />
+            <element signature="e#2255#2256#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4233">
+          <caret line="249" column="38" selection-start-line="249" selection-start-column="38" selection-end-line="249" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
@@ -394,10 +436,6 @@
           <caret line="106" column="48" lean-forward="true" selection-start-line="106" selection-start-column="48" selection-end-line="106" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -447,10 +485,6 @@
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -498,10 +532,6 @@
           <caret line="70" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -525,10 +555,6 @@
           <caret line="24" column="27" selection-start-line="23" selection-start-column="54" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -609,14 +635,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        <state relative-caret-position="102">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Lab.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
+        <state relative-caret-position="374">
           <caret line="26" column="43" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -628,7 +654,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-333">
+        <state relative-caret-position="153">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -638,19 +664,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="249" column="38" selection-start-line="249" selection-start-column="38" selection-end-line="249" selection-end-column="38" />
+        <state relative-caret-position="369">
+          <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
           </folding>
         </state>
       </provider>
