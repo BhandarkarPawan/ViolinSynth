@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="734b1acd-74a4-4c83-b280-f6011bebd231" name="Default" comment="" />
+    <list default="true" id="734b1acd-74a4-4c83-b280-f6011bebd231" name="Default" comment="Refactored and added Doc Strings">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/AF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/AF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/AFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/AFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/BF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/BF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/BFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/BFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/CF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/CF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/CFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/CFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/DF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/DF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/DF2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/DF2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/DF2S.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/DF2S.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/DFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/DFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/EF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/EF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/EF2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/EF2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/EF2S.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/EF2S.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/EFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/EFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/FF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/FF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/FF2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/FF2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/FF2S.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/FF2S.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/FFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/FFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/GF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/GF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/GF2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/GF2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/GF2S.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/GF2S.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/GFS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/GFS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/h.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/h.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes Images/hS.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notes Images/hS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MusicForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MusicForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +46,7 @@
       <file leaf-file-name="AudioPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="22">
               <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -32,13 +60,22 @@
       <file leaf-file-name="MusicForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
+            <state relative-caret-position="-539">
+              <caret line="94" column="73" lean-forward="true" selection-start-line="94" selection-start-column="73" selection-end-line="94" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#978#979#0" expanded="true" />
+                <element signature="e#1003#1004#0" expanded="true" />
+                <element signature="e#4415#4416#0" expanded="true" />
+                <element signature="e#4480#4481#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MusicForm.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
+          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
       <file leaf-file-name="NoteIcon.java" pinned="false" current-in-tab="false">
@@ -91,13 +128,17 @@
       <find>O&quot;</find>
       <find>T2&quot;</find>
       <find>h&quot;</find>
-      <find>notes</find>
       <find>WIDTH_FULL</find>
       <find>staffBase</find>
-      <find>staff</find>
-      <find>dynamicPanel</find>
       <find>PanelHalf</find>
       <find>selectedPanel</find>
+      <find>root</find>
+      <find>dynamicPanel</find>
+      <find>MusicForm</find>
+      <find>staff</find>
+      <find>notes</find>
+      <find>System.</find>
+      <find>System.out.</find>
     </findStrings>
     <replaceStrings>
       <replace>T</replace>
@@ -135,7 +176,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -149,10 +189,17 @@
               <item name="ViolinSynth" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ViolinSynth" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ViolinSynth" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="MusicForm" type="e9f4de52:FormNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -269,6 +316,14 @@
       <option name="presentableId" value="Default" />
       <updated>1537968072301</updated>
     </task>
+    <task id="LOCAL-00001" summary="First commit from IDEA">
+      <created>1540027811345</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1540027811345</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -278,58 +333,58 @@
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
       <window_info id="DB Browser" order="7" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.65954417" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32905984" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.15838926" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.16040269" />
       <window_info id="Structure" order="6" sideWeight="0.5014245" side_tool="true" weight="0.1409396" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.54415953" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.65954417" />
+      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
       <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" weight="0.15637584" />
       <window_info id="Structure" order="6" sideWeight="0.5014245" side_tool="true" weight="0.1409396" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.65954417" />
       <window_info id="DB Browser" order="7" />
-      <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.54415953" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -337,6 +392,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit from IDEA" />
+    <MESSAGE value="Refactored and added Doc Strings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored and added Doc Strings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,6 +430,58 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2204#2205#0" expanded="true" />
+            <element signature="e#2255#2256#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -414,6 +526,10 @@
           <caret line="249" column="38" selection-start-line="249" selection-start-column="38" selection-end-line="249" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -436,6 +552,10 @@
           <caret line="106" column="48" lean-forward="true" selection-start-line="106" selection-start-column="48" selection-end-line="106" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -485,6 +605,10 @@
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -532,6 +656,10 @@
           <caret line="70" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -555,6 +683,10 @@
           <caret line="24" column="27" selection-start-line="23" selection-start-column="54" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -626,20 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Lab.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -652,9 +770,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="22">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -664,12 +796,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
+        <state relative-caret-position="-539">
+          <caret line="94" column="73" lean-forward="true" selection-start-line="94" selection-start-column="73" selection-end-line="94" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
           </folding>
         </state>
       </provider>
