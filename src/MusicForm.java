@@ -1,11 +1,14 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +29,9 @@ public class MusicForm extends JFrame{
     //GUI Components
     private JPanel root;
     private JLabel staff;
+    private double noteCount = 0;
+    private int totalWidth = 0;
+    private ArrayList<NoteLabel> notesPlay;
 
 
     //These are the panels that hold all the notes for a particular time signature
@@ -43,15 +49,14 @@ public class MusicForm extends JFrame{
     private HashMap<String, NoteIcon> noteMap = new HashMap<>();
 
     //This map holds the time value for each time character
-    private HashMap<String, Integer> timeMap = new HashMap<>();
+    private HashMap<String, Integer> timeCharMap = new HashMap<>();
+    private HashMap<Double, Integer> timeIntMap = new HashMap<>();
+
     private Set<String> set = new HashSet<>();
 
     private MusicForm(){
         makeGUI();
     }
-
-
-
 
 
     private void makeGUI(){
@@ -77,15 +82,16 @@ public class MusicForm extends JFrame{
         staff.setIcon(noteMap.get("staff"));
 
         //This is the main Staff that holds all the notes to be played
-        NoteLabel[] notesPlay = new NoteLabel[24];
+        notesPlay = new ArrayList<>();
 
         //Initialize the array to hold a maximum of 24 quavers (quarter note)
         for(int i =0; i< 24; i++) {
-            notesPlay[i] = new NoteLabel();
-            notesPlay[i].setIcon(noteMap.get("staffBase"));
-            staff.add(notesPlay[i]);
-            notesPlay[i].addMouseListener(new noDragMouseListener());
-            notesPlay[i].setTransferHandler(new TransferHandler("icon"));
+            NoteLabel addedNote = new NoteLabel();
+            notesPlay.add(addedNote);
+            addedNote.setIcon(noteMap.get("staffBase"));
+            staff.add(addedNote);
+            addedNote.addMouseListener(new noDragMouseListener());
+            addedNote.setTransferHandler(new myHandler("icon"));
         }
 
         PanelHalf = new JPanel();
@@ -103,6 +109,11 @@ public class MusicForm extends JFrame{
         //TODO: Fill in this function
         playButton.addActionListener(e -> {
             //Play music
+            for (int i =0;i<24;i++){
+                NoteLabel X = (NoteLabel)staff.getComponent(i);
+                System.out.println(X.getIcon().getNoteName());
+            }
+
         });
         for(int i =0;i<11;i++) {
             PanelHalf.add(notesHalf[i]);
@@ -162,10 +173,31 @@ public class MusicForm extends JFrame{
             e.printStackTrace();
         }
         assert img != null;
-        return new NoteIcon(img.getScaledInstance(width, HEIGHT, Image.SCALE_SMOOTH), imageName, width);
+        double time;
+
+        switch (width){
+            case WIDTH_HALF:
+                time = 0.5;
+                break;
+            case WIDTH_ONE:
+                time = 1;
+                break;
+            case WIDTH_TWO:
+                time = 2;
+                break;
+            case WIDTH_FOUR:
+                time = 4;
+                break;
+            case 0:
+                width = WIDTH_HALF;
+                time = 0;
+            default: time = 0;
+
+
+        }
+
+        return new NoteIcon(img.getScaledInstance(width, HEIGHT, Image.SCALE_SMOOTH), imageName, time);
     }
-
-
 
 
     class noDragMouseListener implements MouseListener{
@@ -174,7 +206,18 @@ public class MusicForm extends JFrame{
         public void mouseClicked(MouseEvent e) {
             //Remove the current note and replace it with the default
             NoteLabel thisNote = (NoteLabel)e.getSource();
+            notesPlay.remove(thisNote);
             thisNote.setIcon(noteMap.get("staffBaseS"));
+
+            thisNote = new NoteLabel();
+            notesPlay.add(thisNote);
+            thisNote.setIcon(noteMap.get("staffBase"));
+
+            noteCount-=thisNote.getIcon().getTime();
+            checkWidth();
+            if(totalWidth>WIDTH_FULL){
+                compress();
+            }
         }
 
         @Override
@@ -242,14 +285,21 @@ public class MusicForm extends JFrame{
      * This function loads all the data required for the program to work.
      */
     private void loadMap(){
-        noteMap.put("staffBase", getImage("staffBase", WIDTH_HALF));
-        noteMap.put("staffBaseS", getImage("staffBaseS", WIDTH_HALF));
+        noteMap.put("staffBase", getImage("staffBase", 0));
+        noteMap.put("staffBaseS", getImage("staffBaseS", 0));
         noteMap.put("staff", getImage("staff", 600));
 
-        timeMap.put("h", WIDTH_HALF);
-        timeMap.put("O", WIDTH_ONE);
-        timeMap.put("T", WIDTH_TWO);
-        timeMap.put("F", WIDTH_FOUR);
+        timeCharMap.put("h", WIDTH_HALF);
+        timeCharMap.put("O", WIDTH_ONE);
+        timeCharMap.put("T", WIDTH_TWO);
+        timeCharMap.put("F", WIDTH_FOUR);
+
+        timeIntMap.put(0.5, WIDTH_HALF);
+        timeIntMap.put(1., WIDTH_ONE);
+        timeIntMap.put(2., WIDTH_TWO);
+        timeIntMap.put(3., WIDTH_FOUR);
+        timeIntMap.put(0., WIDTH_HALF);
+
 
         set.add("D");
         set.add("E");
@@ -260,17 +310,17 @@ public class MusicForm extends JFrame{
          String[] TIME = {"h", "O", "T", "F"};
          for(String c: CHAR){
              for (String t: TIME){
-                 noteMap.put(t, getImage(t, timeMap.get("F")));
-                 noteMap.put(t+"S", getImage(t+"S", timeMap.get("F")));
+                 noteMap.put(t, getImage(t, WIDTH_FOUR));
+                 noteMap.put(t+"S", getImage(t+"S", WIDTH_FOUR));
                  String note = c+t;
                  String noteS = note+"S";
-                 noteMap.put(note, getImage(note, timeMap.get(t)));
-                 noteMap.put(noteS, getImage(noteS, timeMap.get(t)));
+                 noteMap.put(note, getImage(note, timeCharMap.get(t)));
+                 noteMap.put(noteS, getImage(noteS, timeCharMap.get(t)));
                  if(set.contains(c)){
                      note+="2";
-                     noteMap.put(note, getImage(note, timeMap.get(t)));
+                     noteMap.put(note, getImage(note, timeCharMap.get(t)));
                      note+="S";
-                     noteMap.put(note, getImage(note, timeMap.get(t)));
+                     noteMap.put(note, getImage(note, timeCharMap.get(t)));
                  }
              }
          }
@@ -311,7 +361,75 @@ public class MusicForm extends JFrame{
                 }
 
             });
-            notes[i].setTransferHandler(new TransferHandler("icon"));
+            notes[i].setTransferHandler(new myHandler("icon"));
         }
+    }
+
+    class myHandler extends TransferHandler{
+
+        myHandler(String property){
+            super(property);
+        }
+
+        @Override
+        public void exportAsDrag(JComponent comp, InputEvent e, int action) {
+            NoteLabel source = (NoteLabel)comp;
+            double sourceCount = source.getIcon().getTime();
+            if(noteCount+sourceCount>24) {
+                JOptionPane.showMessageDialog(playButton, "You cannot have more than 24 beats in one row");
+                System.out.println("Too much");
+                return;
+            }
+            noteCount+=sourceCount;
+            super.exportAsDrag(comp, e, action);
+        }
+
+        @Override
+        public boolean importData(TransferSupport support){
+            NoteLabel target = (NoteLabel)support.getComponent();
+            double targetCount = target.getIcon().getTime();
+            int targetIndex = notesPlay.indexOf(target);
+
+            noteCount-=targetCount;
+
+            System.out.println("Replaced: " + target.getIcon().getNoteName());
+            System.out.println("Its index is: " + targetIndex);
+            System.out.println("Sum of notes: " + noteCount);
+            return super.importData(support);
+        }
+
+        @Override
+        protected void exportDone(JComponent source, Transferable data, int action) {
+            super.exportDone(source, data, action);
+            checkWidth();
+            if(totalWidth>WIDTH_FULL){
+                compress();
+            }
+        }
+    }
+
+    private void checkWidth(){
+        int lastIndex = 0;
+        for(int i= 0;i<24;i++){
+            if(notesPlay.get(i).getIcon().getTime()!=0){
+                lastIndex = i;
+            }
+        }
+        System.out.println("Last note index: " + lastIndex);
+        totalWidth = 0;
+        for(int i= 0;i<=lastIndex;i++){
+            totalWidth+=timeIntMap.get(notesPlay.get(i).getIcon().getTime());
+        }
+        System.out.println("Current Total Width: " + totalWidth);
+    }
+
+    private void compress(){
+        for(NoteLabel thisLabel : notesPlay){
+            if (thisLabel.getIcon().getTime() == 0){
+                notesPlay.remove(thisLabel);
+                notesPlay.add(thisLabel);
+            }
+        }
+
     }
 }

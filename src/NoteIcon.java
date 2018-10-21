@@ -1,22 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class NoteIcon extends ImageIcon {
+class NoteIcon extends ImageIcon {
     private String noteName;
-    int width;
+    private double time;
 
-    NoteIcon(Image path, String noteName, int width){
+    NoteIcon(Image path, String noteName, double time ){
         super(path);
         this.noteName = noteName;
-        this.width = width;
-
+        this.time = time;
     }
 
-    public String getNoteName() {
+    String getNoteName() {
         return noteName;
     }
 
-    public int getWidth() {
-        return width;
+
+    double getTime() {
+        return time;
     }
 }
