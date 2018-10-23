@@ -2,9 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +28,6 @@ public class MusicForm extends JFrame{
     private JPanel root;
     private JLabel staff;
     private double noteCount = 0;
-    private int totalWidth = 0;
     private ArrayList<NoteLabel> notesPlay;
 
 
@@ -57,7 +54,7 @@ public class MusicForm extends JFrame{
     private MusicForm(){
         makeGUI();
     }
-
+    private int timerI = 0;
 
     private void makeGUI(){
 
@@ -108,11 +105,24 @@ public class MusicForm extends JFrame{
 
         //TODO: Fill in this function
         playButton.addActionListener(e -> {
-            //Play music
-            for (int i =0;i<24;i++){
-                NoteLabel X = (NoteLabel)staff.getComponent(i);
-                System.out.println(X.getIcon().getNoteName());
-            }
+            timerI = 0;
+
+            System.out.println("Entered onAction");
+            Timer t = new Timer(250, e1 -> {
+                if (timerI < 24) {
+                    NoteLabel thisNote = (NoteLabel)staff.getComponent(timerI);
+                    NoteIcon thisIcon = thisNote.getIcon();
+                    String noteName = thisIcon.getNoteName();
+                    thisNote.setIcon(noteMap.get(noteName + "S"));
+                    //thisNote.removeMouseListener(thisNote.getMouseListeners()[0]);
+                    Timer t1 = (Timer)e1.getSource();
+                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
+                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
+                    timerI++;
+                }
+
+            });
+            t.start();
 
         });
         for(int i =0;i<11;i++) {
@@ -190,7 +200,6 @@ public class MusicForm extends JFrame{
                 break;
             case 0:
                 width = WIDTH_HALF;
-                time = 0;
             default: time = 0;
 
 
@@ -206,18 +215,9 @@ public class MusicForm extends JFrame{
         public void mouseClicked(MouseEvent e) {
             //Remove the current note and replace it with the default
             NoteLabel thisNote = (NoteLabel)e.getSource();
-            notesPlay.remove(thisNote);
-            thisNote.setIcon(noteMap.get("staffBaseS"));
-
-            thisNote = new NoteLabel();
-            notesPlay.add(thisNote);
-            thisNote.setIcon(noteMap.get("staffBase"));
-
             noteCount-=thisNote.getIcon().getTime();
+            thisNote.setIcon(noteMap.get("staffBaseS"));
             checkWidth();
-            if(totalWidth>WIDTH_FULL){
-                compress();
-            }
         }
 
         @Override
@@ -236,7 +236,8 @@ public class MusicForm extends JFrame{
             NoteLabel thisNote = (NoteLabel)e.getSource();
             NoteIcon thisIcon = thisNote.getIcon();
             String noteName = thisIcon.getNoteName();
-            thisNote.setIcon(noteMap.get(noteName + "S"));
+            if(!noteName.endsWith("S"))
+                thisNote.setIcon(noteMap.get(noteName + "S"));
 
         }
 
@@ -246,7 +247,8 @@ public class MusicForm extends JFrame{
             NoteLabel thisNote = (NoteLabel)e.getSource();
             NoteIcon thisIcon = thisNote.getIcon();
             String noteName = thisIcon.getNoteName();
-            thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
+            if(noteName.endsWith("S"))
+                thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
         }
     }
 
@@ -297,7 +299,7 @@ public class MusicForm extends JFrame{
         timeIntMap.put(0.5, WIDTH_HALF);
         timeIntMap.put(1., WIDTH_ONE);
         timeIntMap.put(2., WIDTH_TWO);
-        timeIntMap.put(3., WIDTH_FOUR);
+        timeIntMap.put(4., WIDTH_FOUR);
         timeIntMap.put(0., WIDTH_HALF);
 
 
@@ -341,7 +343,6 @@ public class MusicForm extends JFrame{
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-
                     NoteLabel jc = (NoteLabel)e.getSource();
                     TransferHandler th = jc.getTransferHandler();
                     th.exportAsDrag(jc, e, TransferHandler.COPY);
@@ -375,8 +376,8 @@ public class MusicForm extends JFrame{
         public void exportAsDrag(JComponent comp, InputEvent e, int action) {
             NoteLabel source = (NoteLabel)comp;
             double sourceCount = source.getIcon().getTime();
-            if(noteCount+sourceCount>24) {
-                JOptionPane.showMessageDialog(playButton, "You cannot have more than 24 beats in one row");
+            if(noteCount+sourceCount>12) {
+                JOptionPane.showMessageDialog(playButton, "You cannot have more than 12 beats in one row");
                 System.out.println("Too much");
                 return;
             }
@@ -389,47 +390,46 @@ public class MusicForm extends JFrame{
             NoteLabel target = (NoteLabel)support.getComponent();
             double targetCount = target.getIcon().getTime();
             int targetIndex = notesPlay.indexOf(target);
-
             noteCount-=targetCount;
-
             System.out.println("Replaced: " + target.getIcon().getNoteName());
             System.out.println("Its index is: " + targetIndex);
             System.out.println("Sum of notes: " + noteCount);
+
             return super.importData(support);
         }
 
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
-            super.exportDone(source, data, action);
             checkWidth();
-            if(totalWidth>WIDTH_FULL){
-                compress();
-            }
+            super.exportDone(source, data, action);
+
         }
     }
 
     private void checkWidth(){
-        int lastIndex = 0;
+        int lastIndex = -1;
         for(int i= 0;i<24;i++){
+            System.out.print(notesPlay.get(i).getIcon().getTime()+ " " );
             if(notesPlay.get(i).getIcon().getTime()!=0){
                 lastIndex = i;
             }
         }
+        System.out.println();
+
         System.out.println("Last note index: " + lastIndex);
-        totalWidth = 0;
-        for(int i= 0;i<=lastIndex;i++){
-            totalWidth+=timeIntMap.get(notesPlay.get(i).getIcon().getTime());
+        int totalWidth = 0;
+        System.out.println("Notes up to last note are: ");
+        for(int i= 0;i<=lastIndex;i++) {
+            System.out.print(notesPlay.get(i).getIcon().getTime()+ ": " + timeIntMap.get(notesPlay.get(i).getIcon().getTime())+ "| ");
+            totalWidth +=timeIntMap.get(notesPlay.get(i).getIcon().getTime());
         }
+        System.out.println();
         System.out.println("Current Total Width: " + totalWidth);
+        if(totalWidth >WIDTH_FULL){
+            compress();
+        }
     }
 
     private void compress(){
-        for(NoteLabel thisLabel : notesPlay){
-            if (thisLabel.getIcon().getTime() == 0){
-                notesPlay.remove(thisLabel);
-                notesPlay.add(thisLabel);
-            }
-        }
-
     }
 }
