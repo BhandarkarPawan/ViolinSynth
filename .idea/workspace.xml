@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="734b1acd-74a4-4c83-b280-f6011bebd231" name="Default" comment="Added delays to the animations">
+    <list default="true" id="734b1acd-74a4-4c83-b280-f6011bebd231" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$buttonMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$buttonMouseListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/NoteIcon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/NoteIcon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +28,8 @@
       <file leaf-file-name="MusicForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+            <state relative-caret-position="855">
+              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5508#5509#0" expanded="true" />
@@ -300,12 +299,25 @@
       <option name="project" value="LOCAL" />
       <updated>1540132954914</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added delays to the animations.">
+      <created>1540326622985</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1540326622985</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removed a TODO">
+      <created>1540326665001</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1540326665001</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
@@ -375,7 +387,9 @@
     <MESSAGE value="Refactored and added Doc Strings" />
     <MESSAGE value="deleted a couple of files" />
     <MESSAGE value="Added delays to the animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added delays to the animations" />
+    <MESSAGE value="Added delays to the animations." />
+    <MESSAGE value="removed a TODO" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed a TODO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        <state relative-caret-position="855">
+          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5508#5509#0" expanded="true" />

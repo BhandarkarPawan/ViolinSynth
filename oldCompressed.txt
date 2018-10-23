@@ -1,0 +1,20 @@
+int removed = 0;
+        System.out.println("Compressing...");
+        for(int i =0; i<notesPlay.size();i++){
+            NoteLabel thisLabel = notesPlay.get(i);
+            System.out.print(thisLabel.getIcon().getTime()+ " " );
+            if (thisLabel.getIcon().getTime() == 0) {
+                notesPlay.remove(thisLabel);
+                staff.remove(thisLabel);
+                removed++;
+            }
+        }
+        for(int i =0; i< removed; i++){
+            NoteLabel addedNote = new NoteLabel();
+            notesPlay.add(addedNote);
+            addedNote.setIcon(noteMap.get("staffBase"));
+            staff.add(addedNote);
+            addedNote.addMouseListener(new noDragMouseListener());
+            addedNote.setTransferHandler(new myHandler("icon"));
+        }
+        System.out.println("...compression done.");
