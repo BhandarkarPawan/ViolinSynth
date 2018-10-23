@@ -103,7 +103,6 @@ public class MusicForm extends JFrame{
         PanelFour = new JPanel();
         PanelFour.setLayout(new BoxLayout(PanelFour, BoxLayout.LINE_AXIS));
 
-        //TODO: Fill in this function
         playButton.addActionListener(e -> {
             timerI = 0;
 
