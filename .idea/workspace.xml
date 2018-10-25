@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$myHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$myHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +28,8 @@
       <file leaf-file-name="MusicForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="456" column="27" selection-start-line="456" selection-start-column="27" selection-end-line="456" selection-end-column="27" />
+            <state relative-caret-position="-308">
+              <caret line="413" column="30" lean-forward="true" selection-start-line="413" selection-start-column="30" selection-end-line="413" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1501#1502#0" expanded="true" />
@@ -146,7 +145,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="81" />
     <option name="y" value="41" />
     <option name="width" value="980" />
@@ -321,11 +320,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540326665001</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Compress Function Added">
+      <created>1540496005894</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1540496005894</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
@@ -339,7 +345,7 @@
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32905984" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.63532764" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.63532764" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
@@ -398,7 +404,8 @@
     <MESSAGE value="Added delays to the animations" />
     <MESSAGE value="Added delays to the animations." />
     <MESSAGE value="removed a TODO" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed a TODO" />
+    <MESSAGE value="Compress Function Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compress Function Added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -840,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="456" column="27" selection-start-line="456" selection-start-column="27" selection-end-line="456" selection-end-column="27" />
+        <state relative-caret-position="-308">
+          <caret line="413" column="30" lean-forward="true" selection-start-line="413" selection-start-column="30" selection-end-line="413" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1501#1502#0" expanded="true" />
