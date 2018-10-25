@@ -114,9 +114,9 @@ public class MusicForm extends JFrame{
                     String noteName = thisIcon.getNoteName();
                     thisNote.setIcon(noteMap.get(noteName + "S"));
                     //thisNote.removeMouseListener(thisNote.getMouseListeners()[0]);
-                    Timer t1 = (Timer)e1.getSource();
-                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
-                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
+//                    Timer t1 = (Timer)e1.getSource();
+//                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
+//                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
                     timerI++;
                 }
 
@@ -156,6 +156,7 @@ public class MusicForm extends JFrame{
 
         //Set Window Size to whatever is required to house all the components
         pack();
+        setResizable(false);
         setVisible(true);
     }
 
@@ -413,6 +414,7 @@ public class MusicForm extends JFrame{
                 lastIndex = i;
             }
         }
+
         System.out.println();
 
         System.out.println("Last note index: " + lastIndex);
@@ -429,6 +431,32 @@ public class MusicForm extends JFrame{
         }
     }
 
+
+    /***
+     * This function compresses the contents of the staff
+     * This is done to ensure that no notes go off the screen
+     */
     private void compress(){
+        System.out.println("original notesPlay: ");
+        for (NoteLabel aNotesPlay1 : notesPlay) {
+            System.out.print(aNotesPlay1.getIcon().getTime() + "  ");
+        }
+
+        System.out.println("\ncompress() called ");
+        for(int i =0; i< notesPlay.size(); i++){
+            if(notesPlay.get(i).getIcon().getNoteName().equals("staffBase")){
+               staff.remove(i);
+               staff.add(notesPlay.get(i));
+                notesPlay.add(notesPlay.remove(i));
+            }
+        }
+
+        System.out.println("compressed notesPlay: ");
+        for (NoteLabel aNotesPlay : notesPlay) {
+            System.out.print(aNotesPlay.getIcon().getTime() + "  ");
+        }
+
+        staff.repaint();
+        staff.revalidate();
     }
 }
