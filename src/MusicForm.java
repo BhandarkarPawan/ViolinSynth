@@ -13,6 +13,9 @@ import java.util.Set;
 
 public class MusicForm extends JFrame{
 
+    //holds the number of staff currently in use
+    int staffCount = 0;
+
     //Height of the staff
     private static final int HEIGHT = 100;
 
@@ -26,10 +29,11 @@ public class MusicForm extends JFrame{
 
     //GUI Components
     private JPanel root;
-    private JLabel staff;
+    private ArrayList<JLabel> staff;
     private double noteCount = 0;
     private ArrayList<NoteLabel> notesPlay;
 
+    private ArrayList<Integer> staffWidth;
 
     //These are the panels that hold all the notes for a particular time signature
     private JPanel
@@ -51,49 +55,65 @@ public class MusicForm extends JFrame{
     //This map holds the time value for each time character
     private HashMap<String, Integer> timeCharMap = new HashMap<>();
     private HashMap<Double, Integer> timeIntMap = new HashMap<>();
-
     private Set<String> set = new HashSet<>();
 
-    private MusicForm(){
-        makeGUI();
-    }
     private int timerI = 0;
 
     private void makeGUI(){
-        staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         //Load all the Icons and Sound Files required for the program to run
         loadMap();
 
-        //These arrays will hold the Icons for each note., corresponding to each time signature
-        NoteLabel[] notesHalf = new NoteLabel[11];
-        NoteLabel[] notesOne = new NoteLabel[11];
-        NoteLabel[] notesTwo = new NoteLabel[11];
-        NoteLabel[] notesFour = new NoteLabel[11];
+        // Main array that holds the staff GUI
+        staff = new ArrayList<>();
+        staffWidth = new ArrayList<>();
 
-        //Load the Icons into the arrays declared above
-        initNotes(notesHalf, "h");
-        initNotes(notesOne, "O");
-        initNotes(notesTwo, "T");
-        initNotes(notesFour, "F");
+        // Main panel that holds all the staff (Scrollable)
+        staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
+        staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
 
-        setContentPane(root);
-        staff.setLayout(new BoxLayout(staff, BoxLayout.LINE_AXIS));
-        staff.setIcon(noteMap.get("staff"));
+        // Add the first staff
+        staff.add(new JLabel());
+        staff.get(staffCount).setLayout(new BoxLayout(staff.get(staffCount), BoxLayout.LINE_AXIS));
+        staff.get(staffCount).setIcon(noteMap.get("staff"));
+        staffPanel.add(staff.get(staffCount));
+        staffWidth.add(0);
 
         //This is the main Staff that holds all the notes to be played
         notesPlay = new ArrayList<>();
 
         //Initialize the array to hold a maximum of 24 quavers (quarter note)
         for(int i =0; i< 24; i++) {
+            // One label per note, max of 24
             NoteLabel addedNote = new NoteLabel();
             notesPlay.add(addedNote);
             addedNote.setIcon(noteMap.get("staffBase"));
-            staff.add(addedNote);
+            staff.get(staffCount).add(addedNote);
+
+            // Listeners for user-interaction
             addedNote.addMouseListener(new noDragMouseListener());
             addedNote.setTransferHandler(new myHandler("icon"));
         }
+
+      /* These arrays will hold the Icons for each note
+         corresponding to each time signature.
+         Load the Icons into the arrays declared above*/
+
+        NoteLabel[] notesHalf = new NoteLabel[11];
+        initNotes(notesHalf, "h");
+
+        NoteLabel[] notesOne = new NoteLabel[11];
+        initNotes(notesOne, "O");
+
+        NoteLabel[] notesTwo = new NoteLabel[11];
+        initNotes(notesTwo, "T");
+
+        NoteLabel[] notesFour = new NoteLabel[11];
+        initNotes(notesFour, "F");
+
+        setContentPane(root);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // These panels will hold 11 notes each, depending on the time
 
         PanelHalf = new JPanel();
         PanelHalf.setLayout(new BoxLayout(PanelHalf, BoxLayout.LINE_AXIS));
@@ -107,14 +127,25 @@ public class MusicForm extends JFrame{
         PanelFour = new JPanel();
         PanelFour.setLayout(new BoxLayout(PanelFour, BoxLayout.LINE_AXIS));
 
+        // Initialize all the panels with notes for later use
+        for(int i =0;i<11;i++) {
+            PanelHalf.add(notesHalf[i]);
+            PanelOne.add(notesOne[i]);
+            PanelTwo.add(notesTwo[i]);
+            PanelFour.add(notesFour[i]);
+        }
+
+
         playButton.addActionListener(e -> {
             timerI = 0;
 
             System.out.println("Entered onAction");
             Timer t = new Timer(250, e1 -> {
                 //TODO: Only iterate till the last legit index
-                if (timerI < 24) {
-                    NoteLabel thisNote = (NoteLabel)staff.getComponent(timerI);
+                if (timerI < (staffCount+1)*24) {
+                    int staffNumber = timerI/24;
+                    int noteNumber = timerI%24;
+                    NoteLabel thisNote = (NoteLabel)staff.get(staffNumber).getComponent(noteNumber);
                     NoteIcon thisIcon = thisNote.getIcon();
                     String noteName = thisIcon.getNoteName();
                     thisNote.setIcon(noteMap.get(noteName + "S"));
@@ -123,6 +154,11 @@ public class MusicForm extends JFrame{
 //                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
 //                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
                     timerI++;
+                    System.out.print(timerI+ " ");
+                }
+                else{
+                    Timer t1 = (Timer)e1.getSource();
+                    t1.stop();
                 }
 
             });
@@ -132,67 +168,79 @@ public class MusicForm extends JFrame{
 
 
         addButton.addActionListener(e -> {
+            /***
+             * Every time the add button is clicked, add a new staff row
+             * to the ScrollPanel and also to the list of staff. We increment
+             * staffCount in order to keep track of how many staff are are
+             * currently added. The then we repeat the same procedure as we
+             * did for the first staff row.
+             */
 
-            JLabel newStaff = new JLabel();
-            newStaff.setLayout(new BoxLayout(newStaff, BoxLayout.LINE_AXIS));
-            newStaff.setIcon(noteMap.get("staff"));
+            staffCount++;
 
-            staffPanel.add(newStaff);
-            newStaff.setVisible(true);
+            // Add a new staff row to the list
+            staff.add(new JLabel());
+            staff.get(staffCount).
+                    setLayout(new BoxLayout(staff.get(staffCount), BoxLayout.LINE_AXIS));
+            staff.get(staffCount).setIcon(noteMap.get("staff"));
 
+            // Add the new staff row to the GUI
+            staffPanel.add(staff.get(staffCount));
+            staff.get(staffCount).setVisible(true);
+            // Add note containers for the new row
             for(int i =0; i< 24; i++) {
                 NoteLabel addedNote = new NoteLabel();
                 notesPlay.add(addedNote);
                 addedNote.setIcon(noteMap.get("staffBase"));
-                newStaff.add(addedNote);
+                staff.get(staffCount).add(addedNote);
+
+                // Add listeners for user-interaction
                 addedNote.addMouseListener(new noDragMouseListener());
                 addedNote.setTransferHandler(new myHandler("icon"));
             }
+
+            //Refresh panel to make the changes visible
             staffPanel.repaint();
             staffPanel.revalidate();
-            System.out.println("DONE ");
+
+            staffWidth.add(0);
+
+            System.out.println("Number of rows: " + staffCount+1);
         });
 
-
-        for(int i =0;i<11;i++) {
-            PanelHalf.add(notesHalf[i]);
-            PanelOne.add(notesOne[i]);
-            PanelTwo.add(notesTwo[i]);
-            PanelFour.add(notesFour[i]);
-        }
 
         //These are the Icons that serve as buttons to load the corresponding lists
         NoteLabel h = new NoteLabel();
         h.setIcon(noteMap.get("h"));
         h.addMouseListener(new buttonMouseListener());
+        dynamicPanel.add(h);
 
         NoteLabel o = new NoteLabel();
         o.setIcon(noteMap.get("O"));
         o.addMouseListener(new buttonMouseListener());
+        dynamicPanel.add(o);
 
         NoteLabel t = new NoteLabel();
         t.setIcon(noteMap.get("T"));
         t.addMouseListener(new buttonMouseListener());
+        dynamicPanel.add(t);
 
         NoteLabel f = new NoteLabel();
         f.setIcon(noteMap.get("F"));
         f.addMouseListener(new buttonMouseListener());
-
-        //Dynamic Panel is the one which holds all four buttons
-        dynamicPanel.add(h);
-        dynamicPanel.add(o);
-        dynamicPanel.add(t);
         dynamicPanel.add(f);
 
-        //Set Window Size to whatever is required to house all the components
+        // Dynamic Panel is the one which holds all four buttons
+
+
+
+        // Display the window
         pack();
         //setResizable(false);
         setVisible(true);
+
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(MusicForm::new);
-    }
 
     /**
      * This function takes in two arguments:
@@ -232,7 +280,6 @@ public class MusicForm extends JFrame{
                 width = WIDTH_HALF;
             default: time = 0;
 
-
         }
 
         return new NoteIcon(img.getScaledInstance(width, HEIGHT, Image.SCALE_SMOOTH), imageName, time);
@@ -241,6 +288,10 @@ public class MusicForm extends JFrame{
 
     class noDragMouseListener implements MouseListener{
 
+        /**
+         * This is used for staff where dragging isn't allowed but clicking is.
+         * We use this instead of the ActionListener for the highlight on mouseover
+         */
         @Override
         public void mouseClicked(MouseEvent e) {
             //Remove the current note and replace it with the default
@@ -283,6 +334,12 @@ public class MusicForm extends JFrame{
     }
 
     class buttonMouseListener extends noDragMouseListener{
+        /**
+         * This one is used for the 4 large notes which will serve as buttons.
+         * Similar to the staff notes, we do not want these t be draggable.
+         * Along with that, we want to load rhe corresponding notes-Panel when
+         * the button is clicked. Hence we override the mouseClicked() method.
+         */
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -308,8 +365,10 @@ public class MusicForm extends JFrame{
                     selectedPanel.add(PanelFour);
                     break;
             }
-            setSize(WIDTH_FULL+20, 435);
+            selectedPanel.setMaximumSize(new Dimension(WIDTH_FULL,HEIGHT));
+            setSize(WIDTH_FULL+20, HEIGHT*(staffCount+1) + 320);
             //setResizable(false);
+
         }
     }
 
@@ -332,6 +391,7 @@ public class MusicForm extends JFrame{
         timeIntMap.put(4., WIDTH_FOUR);
         timeIntMap.put(0., WIDTH_HALF);
 
+        Set<String> set = new HashSet<>();
 
         set.add("D");
         set.add("E");
@@ -360,6 +420,11 @@ public class MusicForm extends JFrame{
 
 
     private void initNotes(NoteLabel[] notes, String t){
+        /***
+         * This function will initialize notes[] array with the corresponding
+         * note icons. These are the ones which will later be displayed in the
+         * selected panel when the user clicks a particular note (button)
+         */
         String[] CHAR = {"A"+t, "B"+t,"C"+t,"D"+t,"E"+t,"F"+t,
                 "G"+t,"D"+t+"2","E"+t+"2","F"+t+"2","G"+t+"2"};
 
@@ -397,6 +462,11 @@ public class MusicForm extends JFrame{
     }
 
     class myHandler extends TransferHandler{
+
+        /**
+         * This class takes care of the heavy-lifting when it comes to the
+         * Actual drag and drop mechanism that governs the UI of the notes
+         */
 
         myHandler(String property){
             super(property);
@@ -437,28 +507,37 @@ public class MusicForm extends JFrame{
     }
 
     private void checkWidth(){
-        int lastIndex = -1;
-        for(int i= 0;i<24;i++){
-            System.out.print(notesPlay.get(i).getIcon().getTime()+ " " );
-            if(notesPlay.get(i).getIcon().getTime()!=0){
-                lastIndex = i;
-            }
-        }
-
-        System.out.println();
-
-        System.out.println("Last note index: " + lastIndex);
-        int totalWidth = 0;
-        System.out.println("Notes up to last note are: ");
-        for(int i= 0;i<=lastIndex;i++) {
-            System.out.print(notesPlay.get(i).getIcon().getTime()+ ": " + timeIntMap.get(notesPlay.get(i).getIcon().getTime())+ "| ");
-            totalWidth +=timeIntMap.get(notesPlay.get(i).getIcon().getTime());
-        }
-        System.out.println();
-        System.out.println("Current Total Width: " + totalWidth);
-        if(totalWidth >WIDTH_FULL){
-            compress();
-        }
+        /**
+         * This function checks the width to see if anything is off screen
+         */
+//        int lastIndex = -1;
+//        for(int i= 0;i<24;i++){
+//            System.out.print(notesPlay.get(i).getIcon().getTime()+ " " );
+//            if(notesPlay.get(i).getIcon().getTime()!=0){
+//                lastIndex = i;
+//            }
+//        }
+//
+//        System.out.println();
+//
+//        System.out.println("Last note index: " + lastIndex);
+//
+//        for(int i=0; i<=staffCount;i++) {
+//            staffWidth.set(i, 0);
+//            int newWidth = 0;
+//            System.out.println("Notes up to last note are: ");
+//            for (int j = i*24; j <= lastIndex; j++) {
+//                System.out.print(notesPlay.get(j).getIcon().getTime() + ": "
+//                        + timeIntMap.get(notesPlay.get(j).getIcon().getTime()) + "| ");
+//                 newWidth += staffWidth.get(i) + timeIntMap.get(notesPlay.get(i).getIcon().getTime());
+//            }
+//            staffWidth.set(i, newWidth);
+//            System.out.println();
+//            System.out.println("Current Total Width: " + newWidth);
+//            if (newWidth> WIDTH_FULL) {
+//                compress();
+//            }
+//        }
     }
 
 
@@ -467,6 +546,7 @@ public class MusicForm extends JFrame{
      * This is done to ensure that no notes go off the screen
      */
     private void compress(){
+
         System.out.println("original notesPlay: ");
         for(int i = 0;i <notesPlay.size();i++){
             System.out.print(notesPlay.get(i).getIcon().getTime()+ "  ");
@@ -475,8 +555,10 @@ public class MusicForm extends JFrame{
         System.out.println("\ncompress() called ");
         for(int i =0; i< notesPlay.size(); i++){
             if(notesPlay.get(i).getIcon().getNoteName().equals("staffBase")){
-               staff.remove(i);
-               staff.add(notesPlay.get(i));
+                int staffNumber = i/24;
+                int noteNumber = i%24;
+               staff.get(staffNumber).remove(noteNumber);
+               staff.get(staffNumber).add(notesPlay.get(i));
                 notesPlay.add(notesPlay.remove(i));
             }
         }
@@ -486,7 +568,18 @@ public class MusicForm extends JFrame{
             System.out.print(aNotesPlay.getIcon().getTime() + "  ");
         }
 
-        staff.repaint();
-        staff.revalidate();
+        for(int i =0; i< notesPlay.size(); i++) {
+            staff.get(i).repaint();
+            staff.get(i).revalidate();
+        }
+    }
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MusicForm::new);
+    }
+
+    private MusicForm(){
+        makeGUI();
     }
 }
