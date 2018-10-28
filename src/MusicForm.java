@@ -41,6 +41,9 @@ public class MusicForm extends JFrame{
     private JButton playButton;
     private JPanel dynamicPanel;
     private JPanel selectedPanel;
+    private JButton addButton;
+    private JScrollPane staffScroll;
+    private JPanel staffPanel;
 
     //This map will hold the NoteIcon objects for each note
     private HashMap<String, NoteIcon> noteMap = new HashMap<>();
@@ -57,6 +60,7 @@ public class MusicForm extends JFrame{
     private int timerI = 0;
 
     private void makeGUI(){
+        staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //Load all the Icons and Sound Files required for the program to run
@@ -108,6 +112,7 @@ public class MusicForm extends JFrame{
 
             System.out.println("Entered onAction");
             Timer t = new Timer(250, e1 -> {
+                //TODO: Only iterate till the last legit index
                 if (timerI < 24) {
                     NoteLabel thisNote = (NoteLabel)staff.getComponent(timerI);
                     NoteIcon thisIcon = thisNote.getIcon();
@@ -124,6 +129,31 @@ public class MusicForm extends JFrame{
             t.start();
 
         });
+
+
+        addButton.addActionListener(e -> {
+
+            JLabel newStaff = new JLabel();
+            newStaff.setLayout(new BoxLayout(newStaff, BoxLayout.LINE_AXIS));
+            newStaff.setIcon(noteMap.get("staff"));
+
+            staffPanel.add(newStaff);
+            newStaff.setVisible(true);
+
+            for(int i =0; i< 24; i++) {
+                NoteLabel addedNote = new NoteLabel();
+                notesPlay.add(addedNote);
+                addedNote.setIcon(noteMap.get("staffBase"));
+                newStaff.add(addedNote);
+                addedNote.addMouseListener(new noDragMouseListener());
+                addedNote.setTransferHandler(new myHandler("icon"));
+            }
+            staffPanel.repaint();
+            staffPanel.revalidate();
+            System.out.println("DONE ");
+        });
+
+
         for(int i =0;i<11;i++) {
             PanelHalf.add(notesHalf[i]);
             PanelOne.add(notesOne[i]);
@@ -156,7 +186,7 @@ public class MusicForm extends JFrame{
 
         //Set Window Size to whatever is required to house all the components
         pack();
-        setResizable(false);
+        //setResizable(false);
         setVisible(true);
     }
 
@@ -278,8 +308,8 @@ public class MusicForm extends JFrame{
                     selectedPanel.add(PanelFour);
                     break;
             }
-            setSize(WIDTH_FULL+20, 420);
-            setResizable(false);
+            setSize(WIDTH_FULL+20, 435);
+            //setResizable(false);
         }
     }
 
@@ -438,8 +468,8 @@ public class MusicForm extends JFrame{
      */
     private void compress(){
         System.out.println("original notesPlay: ");
-        for (NoteLabel aNotesPlay1 : notesPlay) {
-            System.out.print(aNotesPlay1.getIcon().getTime() + "  ");
+        for(int i = 0;i <notesPlay.size();i++){
+            System.out.print(notesPlay.get(i).getIcon().getTime()+ "  ");
         }
 
         System.out.println("\ncompress() called ");
