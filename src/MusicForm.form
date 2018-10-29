@@ -33,14 +33,14 @@
         </constraints>
         <properties>
           <horizontalScrollBarPolicy value="30"/>
-          <verticalScrollBarPolicy value="20"/>
+          <verticalScrollBarPolicy value="21"/>
         </properties>
         <border type="none"/>
         <children>
           <grid id="3a874" binding="selectedPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
-              <maximumSize width="650" height="100"/>
+              <maximumSize width="600" height="100"/>
             </properties>
             <border type="none"/>
             <children/>

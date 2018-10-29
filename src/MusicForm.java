@@ -14,10 +14,14 @@ import java.util.Set;
 public class MusicForm extends JFrame{
 
     //holds the number of staff currently in use
-    int staffCount = 0;
+    private int staffCount = -1;
 
     //Height of the staff
     private static final int HEIGHT = 100;
+
+    private boolean paused = false;
+    private boolean finished = true;
+
 
     //Width that the note takes up on each note
     private static final int
@@ -71,32 +75,12 @@ public class MusicForm extends JFrame{
         staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
         staffPanel.setLayout(new BoxLayout(staffPanel, BoxLayout.Y_AXIS));
 
-        // Add the first staff
-        staff.add(new JLabel());
-        staff.get(staffCount).setLayout(new BoxLayout(staff.get(staffCount), BoxLayout.LINE_AXIS));
-        staff.get(staffCount).setIcon(noteMap.get("staff"));
-        staffPanel.add(staff.get(staffCount));
-        staffWidth.add(0);
-
-        //This is the main Staff that holds all the notes to be played
         notesPlay = new ArrayList<>();
 
-        //Initialize the array to hold a maximum of 24 quavers (quarter note)
-        for(int i =0; i< 24; i++) {
-            // One label per note, max of 24
-            NoteLabel addedNote = new NoteLabel();
-            notesPlay.add(addedNote);
-            addedNote.setIcon(noteMap.get("staffBase"));
-            staff.get(staffCount).add(addedNote);
+        addStaff();
+        addStaff();
+        addStaff();
 
-            // Listeners for user-interaction
-            addedNote.addMouseListener(new noDragMouseListener());
-            addedNote.setTransferHandler(new myHandler("icon"));
-        }
-
-      /* These arrays will hold the Icons for each note
-         corresponding to each time signature.
-         Load the Icons into the arrays declared above*/
 
         NoteLabel[] notesHalf = new NoteLabel[11];
         initNotes(notesHalf, "h");
@@ -135,35 +119,69 @@ public class MusicForm extends JFrame{
             PanelFour.add(notesFour[i]);
         }
 
+        //selectedPanel.add(PanelHalf);
 
         playButton.addActionListener(e -> {
-            timerI = 0;
-
-            System.out.println("Entered onAction");
-            Timer t = new Timer(250, e1 -> {
-                //TODO: Only iterate till the last legit index
-                if (timerI < (staffCount+1)*24) {
-                    int staffNumber = timerI/24;
-                    int noteNumber = timerI%24;
-                    NoteLabel thisNote = (NoteLabel)staff.get(staffNumber).getComponent(noteNumber);
-                    NoteIcon thisIcon = thisNote.getIcon();
-                    String noteName = thisIcon.getNoteName();
-                    thisNote.setIcon(noteMap.get(noteName + "S"));
-                    //thisNote.removeMouseListener(thisNote.getMouseListeners()[0]);
-//                    Timer t1 = (Timer)e1.getSource();
-//                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
-//                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
-                    timerI++;
-                    System.out.print(timerI+ " ");
+            String command = playButton.getText();
+            if (command.equals("Pause")){
+                playButton.setText("Play");
+                paused = true;
+            }
+            else {
+                playButton.setText("Pause");
+                if(!finished){
+                    paused = false;
                 }
-                else{
-                    Timer t1 = (Timer)e1.getSource();
-                    t1.stop();
+                 else {
+
+                    timerI = 0;
+                    for (int i = 0; i < (staffCount + 1) * 24; i++) {
+                        int staffNumber = i / 24;
+                        int noteNumber = i % 24;
+                        NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
+                        thisNote.removeMouseListener(thisNote.getMouseListeners()[0]);
+                    }
+
+                    System.out.println("Entered onAction");
+                    Timer t = new Timer(250, e1 -> {
+                        finished = false;
+                        //TODO: Only iterate till the last legit index
+                        if (timerI < (staffCount + 1) * 24) {
+                            if(!paused) {
+                                int staffNumber = timerI / 24;
+                                int noteNumber = timerI % 24;
+                                NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
+                                NoteIcon thisIcon = thisNote.getIcon();
+                                String noteName = thisIcon.getNoteName();
+                                thisNote.setIcon(noteMap.get(noteName + "S"));
+                                //                    Timer t1 = (Timer)e1.getSource();
+                                //                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
+                                //                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
+                                timerI++;
+                                System.out.print(timerI + " ");
+                            }
+                        } else {
+                            finished = true;
+                            playButton.setText("Play");
+                            Timer t1 = (Timer) e1.getSource();
+                            for (int i = 0; i < (staffCount + 1) * 24; i++) {
+                                int staffNumber = i / 24;
+                                int noteNumber = i % 24;
+                                NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
+                                thisNote.addMouseListener(new noDragMouseListener());
+                                NoteIcon thisIcon = thisNote.getIcon();
+                                String noteName = thisIcon.getNoteName();
+                                if (noteName.endsWith("S"))
+                                    thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
+                            }
+
+                            t1.stop();
+                        }
+
+                    });
+                    t.start();
                 }
-
-            });
-            t.start();
-
+            }
         });
 
 
@@ -176,35 +194,16 @@ public class MusicForm extends JFrame{
              * did for the first staff row.
              */
 
-            staffCount++;
+            addStaff();
 
-            // Add a new staff row to the list
-            staff.add(new JLabel());
-            staff.get(staffCount).
-                    setLayout(new BoxLayout(staff.get(staffCount), BoxLayout.LINE_AXIS));
-            staff.get(staffCount).setIcon(noteMap.get("staff"));
-
-            // Add the new staff row to the GUI
-            staffPanel.add(staff.get(staffCount));
-            staff.get(staffCount).setVisible(true);
-            // Add note containers for the new row
-            for(int i =0; i< 24; i++) {
-                NoteLabel addedNote = new NoteLabel();
-                notesPlay.add(addedNote);
-                addedNote.setIcon(noteMap.get("staffBase"));
-                staff.get(staffCount).add(addedNote);
-
-                // Add listeners for user-interaction
-                addedNote.addMouseListener(new noDragMouseListener());
-                addedNote.setTransferHandler(new myHandler("icon"));
-            }
 
             //Refresh panel to make the changes visible
             staffPanel.repaint();
             staffPanel.revalidate();
 
             staffWidth.add(0);
-
+            setSize(WIDTH_FULL+20, Math.min(HEIGHT*(staffCount) + 320,HEIGHT*(3) + 320)) ;
+            setResizable(false);
             System.out.println("Number of rows: " + staffCount+1);
         });
 
@@ -236,8 +235,33 @@ public class MusicForm extends JFrame{
 
         // Display the window
         pack();
-        //setResizable(false);
+        setResizable(false);
         setVisible(true);
+
+    }
+
+    private void addStaff(){
+        staffCount++;
+
+        // Add a new staff row to the list
+        staff.add(new JLabel());
+        staff.get(staffCount).
+                setLayout(new BoxLayout(staff.get(staffCount), BoxLayout.LINE_AXIS));
+        staff.get(staffCount).setIcon(noteMap.get("staff"));
+
+        // Add the new staff row to the GUI
+        staffPanel.add(staff.get(staffCount));
+        staff.get(staffCount).setVisible(true);
+        // Add note containers for the new row
+        for(int i =0; i< 24; i++) {
+            NoteLabel addedNote = new NoteLabel();
+            notesPlay.add(addedNote);
+            addedNote.setIcon(noteMap.get("staffBase"));
+            staff.get(staffCount).add(addedNote);
+            // Add listeners for user-interaction
+            addedNote.addMouseListener(new noDragMouseListener());
+            addedNote.setTransferHandler(new myHandler("icon"));
+        }
 
     }
 
@@ -365,9 +389,8 @@ public class MusicForm extends JFrame{
                     selectedPanel.add(PanelFour);
                     break;
             }
-            selectedPanel.setMaximumSize(new Dimension(WIDTH_FULL,HEIGHT));
-            setSize(WIDTH_FULL+20, HEIGHT*(staffCount+1) + 320);
-            //setResizable(false);
+            setSize(WIDTH_FULL+20, Math.min(HEIGHT*(staffCount+1) + 320,HEIGHT*(3) + 320)) ;
+            setResizable(false);
 
         }
     }
@@ -582,4 +605,7 @@ public class MusicForm extends JFrame{
     private MusicForm(){
         makeGUI();
     }
+
+
+
 }
