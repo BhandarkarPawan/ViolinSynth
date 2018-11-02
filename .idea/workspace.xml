@@ -3,6 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="734b1acd-74a4-4c83-b280-f6011bebd231" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/Music.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$buttonMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$buttonMouseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$myHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$myHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm$noDragMouseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ViolinSynth/MusicForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Music.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Music.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MusicForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MusicForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicForm.java" afterDir="false" />
     </list>
@@ -25,31 +33,29 @@
       <file leaf-file-name="MusicForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="392" column="19" selection-start-line="392" selection-start-column="19" selection-end-line="392" selection-end-column="19" />
+            <state relative-caret-position="-4546">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#15920#15921#0" expanded="true" />
-                <element signature="e#15959#15960#0" expanded="true" />
-                <element signature="e#20679#20680#0" expanded="true" />
-                <element signature="e#20737#20738#0" expanded="true" />
-                <element signature="e#20763#20764#0" expanded="true" />
-                <element signature="e#20788#20789#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MusicForm.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
-          <provider selected="true" editor-type-id="ui-designer" />
+      <file leaf-file-name="NoteIcon.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="NoteLabel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="34">
+              <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
               <folding>
                 <element signature="e#217#218#0" expanded="true" />
                 <element signature="e#244#245#0" expanded="true" />
@@ -69,36 +75,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Action</find>
-      <find>ActionListener</find>
-      <find>mousePressed</find>
-      <find>boxLa</find>
-      <find>clicke</find>
-      <find>set</find>
-      <find>root</find>
-      <find>staff.</find>
-      <find>resizable</find>
-      <find>staff</find>
-      <find>clicked</find>
-      <find>addButt</find>
-      <find>checkWidth</find>
-      <find>timer</find>
-      <find>mouseClicked</find>
-      <find>addbutton</find>
-      <find>selectedPanel</find>
-      <find>selected</find>
-      <find>mouseListener</find>
-      <find>MouseListener</find>
-      <find>addMouseListener</find>
-      <find>substr</find>
-      <find>layButton</find>
-      <find>finished = false</find>
-      <find>finished = false</find>
-      <find>finished = true</find>
-      <find>setSize</find>
       <find>mouseCli</find>
-      <find>addButton</find>
       <find>mouseCl</find>
+      <find>playButton</find>
+      <find>playBUtton</find>
+      <find>addbutton</find>
+      <find>playBu</find>
+      <find>play</find>
+      <find>playBut</find>
+      <find>setResizable</find>
+      <find>setSize</find>
+      <find>pack()</find>
+      <find>playbutton.</find>
+      <find>selec</find>
+      <find>setPre</find>
+      <find>setPref</find>
+      <find>setPr</find>
+      <find>selectedP</find>
+      <find>pack</find>
+      <find>24</find>
+      <find>noDra</find>
+      <find>trans</find>
+      <find>TransferHandler</find>
+      <find>targetCount</find>
+      <find>noteCount.</find>
+      <find>addButton</find>
+      <find>myHandler</find>
+      <find>noteCount</find>
+      <find>NotesPerStaff</find>
+      <find>staffCount</find>
+      <find>clicked</find>
     </findStrings>
     <replaceStrings>
       <replace>T</replace>
@@ -128,18 +134,23 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="80" />
-    <option name="y" value="40" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
+    <option name="x" value="-15" />
+    <option name="y" value="25" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
@@ -158,12 +169,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../swingWS" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="295" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -323,41 +336,47 @@
       <option name="project" value="LOCAL" />
       <updated>1540752831107</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added play/pause functionality">
+      <created>1540836476974</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1540836476974</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="10" sideWeight="0.49932885" weight="0.32905984" />
-      <window_info id="DB Browser" order="7" />
+      <window_info id="DB Browser" order="7" weight="0.3295302" />
       <window_info anchor="bottom" id="Messages" order="3" weight="0.32905984" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50067115" side_tool="true" weight="0.32905984" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32905984" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.3295302" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.5911681" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32905984" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" weight="0.32905984" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49932885" visible="true" weight="0.32905984" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.19395973" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4985755" visible="true" weight="0.16644295" />
       <window_info id="Structure" order="6" sideWeight="0.5014245" side_tool="true" weight="0.1409396" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.24966443" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.54415953" />
       <window_info id="Favorites" order="3" sideWeight="0.5014245" side_tool="true" weight="0.16442953" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="4" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32905984" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="4" />
@@ -402,7 +421,8 @@
     <MESSAGE value="removed a TODO" />
     <MESSAGE value="Compress Function Added" />
     <MESSAGE value="Added scrollable staff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added scrollable staff" />
+    <MESSAGE value="Added play/pause functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added play/pause functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -415,6 +435,10 @@
         <watch expression="notes2" language="JAVA" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -436,19 +460,43 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+          <folding>
+            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4692">
           <caret line="276" lean-forward="true" selection-start-line="276" selection-end-line="276" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -463,15 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7344">
           <caret line="432" selection-start-line="432" selection-end-line="432" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -486,15 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3672">
           <caret line="216" column="22" selection-start-line="216" selection-start-column="12" selection-end-line="216" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -545,15 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="41" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -583,15 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4233">
           <caret line="249" column="38" selection-start-line="249" selection-start-column="38" selection-end-line="249" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -600,15 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1598">
           <caret line="106" column="48" lean-forward="true" selection-start-line="106" selection-start-column="48" selection-end-line="106" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -639,15 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,15 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
           <caret line="70" selection-start-line="70" selection-end-line="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,41 +674,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="24" column="27" selection-start-line="23" selection-start-column="54" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java" />
-    <entry file="file://$PROJECT_DIR$/src/Music.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Music.java" />
     <entry file="file://$PROJECT_DIR$/src/AudioPlayer.java" />
-    <entry file="file://$PROJECT_DIR$/src/Music.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Music.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Music.java" />
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="jar://C:/Program Files/Java/jdk-10/lib/src.zip!/java.desktop/java/awt/event/MouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -736,13 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71">
           <caret line="1148" selection-start-line="1148" selection-end-line="1148" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -767,10 +717,11 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Music.java" />
     <entry file="file://$PROJECT_DIR$/src/NoteLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="34">
+          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
           <folding>
             <element signature="e#217#218#0" expanded="true" />
             <element signature="e#244#245#0" expanded="true" />
@@ -778,28 +729,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dump.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dump.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MusicForm.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MusicForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="392" column="19" selection-start-line="392" selection-start-column="19" selection-end-line="392" selection-end-column="19" />
+        <state relative-caret-position="-4546">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="e#15959#15960#0" expanded="true" />
-            <element signature="e#20679#20680#0" expanded="true" />
-            <element signature="e#20737#20738#0" expanded="true" />
-            <element signature="e#20763#20764#0" expanded="true" />
-            <element signature="e#20788#20789#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NoteIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
         </state>
       </provider>
     </entry>

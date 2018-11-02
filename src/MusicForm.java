@@ -14,8 +14,9 @@ import java.util.Set;
 public class MusicForm extends JFrame{
 
     //holds the number of staff currently in use
-    private int staffCount = -1;
-
+    private int staffCount = 0;
+    private ArrayList<Double> NotesPerStaff;
+    private NoteLabel bufferLabel;
     //Height of the staff
     private static final int HEIGHT = 100;
 
@@ -34,7 +35,7 @@ public class MusicForm extends JFrame{
     //GUI Components
     private JPanel root;
     private ArrayList<JLabel> staff;
-    private double noteCount = 0;
+    private double noteCount;
     private ArrayList<NoteLabel> notesPlay;
 
     private ArrayList<Integer> staffWidth;
@@ -52,6 +53,8 @@ public class MusicForm extends JFrame{
     private JButton addButton;
     private JScrollPane staffScroll;
     private JPanel staffPanel;
+    private JScrollPane selectedScroll;
+    private JPanel buttonPanel;
 
     //This map will hold the NoteIcon objects for each note
     private HashMap<String, NoteIcon> noteMap = new HashMap<>();
@@ -64,6 +67,9 @@ public class MusicForm extends JFrame{
     private int timerI = 0;
 
     private void makeGUI(){
+
+        NotesPerStaff = new ArrayList<>();
+
         //Load all the Icons and Sound Files required for the program to run
         loadMap();
 
@@ -121,6 +127,8 @@ public class MusicForm extends JFrame{
 
         //selectedPanel.add(PanelHalf);
 
+
+
         playButton.addActionListener(e -> {
             String command = playButton.getText();
             if (command.equals("Pause")){
@@ -133,9 +141,8 @@ public class MusicForm extends JFrame{
                     paused = false;
                 }
                  else {
-
                     timerI = 0;
-                    for (int i = 0; i < (staffCount + 1) * 24; i++) {
+                    for (int i = 0; i < (staffCount) * 24; i++) {
                         int staffNumber = i / 24;
                         int noteNumber = i % 24;
                         NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
@@ -146,7 +153,7 @@ public class MusicForm extends JFrame{
                     Timer t = new Timer(250, e1 -> {
                         finished = false;
                         //TODO: Only iterate till the last legit index
-                        if (timerI < (staffCount + 1) * 24) {
+                        if (timerI < (staffCount) * 24) {
                             if(!paused) {
                                 int staffNumber = timerI / 24;
                                 int noteNumber = timerI % 24;
@@ -164,7 +171,7 @@ public class MusicForm extends JFrame{
                             finished = true;
                             playButton.setText("Play");
                             Timer t1 = (Timer) e1.getSource();
-                            for (int i = 0; i < (staffCount + 1) * 24; i++) {
+                            for (int i = 0; i < (staffCount) * 24; i++) {
                                 int staffNumber = i / 24;
                                 int noteNumber = i % 24;
                                 NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
@@ -182,6 +189,8 @@ public class MusicForm extends JFrame{
                     t.start();
                 }
             }
+            //setPreferredSize(new Dimension(600,600));
+
         });
 
 
@@ -196,15 +205,13 @@ public class MusicForm extends JFrame{
 
             addStaff();
 
-
             //Refresh panel to make the changes visible
             staffPanel.repaint();
             staffPanel.revalidate();
 
             staffWidth.add(0);
-            setSize(WIDTH_FULL+20, Math.min(HEIGHT*(staffCount) + 320,HEIGHT*(3) + 320)) ;
-            setResizable(false);
-            System.out.println("Number of rows: " + staffCount+1);
+
+            System.out.println("Number of rows: " + staffCount);
         });
 
 
@@ -241,7 +248,7 @@ public class MusicForm extends JFrame{
     }
 
     private void addStaff(){
-        staffCount++;
+        NotesPerStaff.add(0.0);
 
         // Add a new staff row to the list
         staff.add(new JLabel());
@@ -262,6 +269,9 @@ public class MusicForm extends JFrame{
             addedNote.addMouseListener(new noDragMouseListener());
             addedNote.setTransferHandler(new myHandler("icon"));
         }
+
+        staffCount++;
+
 
     }
 
@@ -320,7 +330,15 @@ public class MusicForm extends JFrame{
         public void mouseClicked(MouseEvent e) {
             //Remove the current note and replace it with the default
             NoteLabel thisNote = (NoteLabel)e.getSource();
-            noteCount-=thisNote.getIcon().getTime();
+
+            int targetIndex = notesPlay.indexOf(thisNote);
+            Double targetCount = thisNote.getIcon().getTime();
+
+            int staffNum = targetIndex/24;
+            Double targetStaffCount = NotesPerStaff.get(staffNum);
+            targetStaffCount-= targetCount;
+            NotesPerStaff.set(staffNum, targetStaffCount);
+
             thisNote.setIcon(noteMap.get("staffBaseS"));
             checkWidth();
         }
@@ -378,20 +396,24 @@ public class MusicForm extends JFrame{
             switch (noteName){
                 case "hS":
                     selectedPanel.add(PanelHalf);
+                    selectedPanel.setPreferredSize(new Dimension(275,100));
                     break;
                 case "OS":
                     selectedPanel.add(PanelOne);
-                break;
+                    selectedPanel.setPreferredSize(new Dimension(550,100));
+
+                    break;
                 case "TS":
                     selectedPanel.add(PanelTwo);
+                    selectedPanel.setPreferredSize(new Dimension(825,100));
+
                     break;
                 case "FS":
                     selectedPanel.add(PanelFour);
+                    selectedPanel.setPreferredSize(new Dimension(1100,100));
+
                     break;
             }
-            setSize(WIDTH_FULL+20, Math.min(HEIGHT*(staffCount+1) + 320,HEIGHT*(3) + 320)) ;
-            setResizable(false);
-
         }
     }
 
@@ -497,32 +519,67 @@ public class MusicForm extends JFrame{
 
         @Override
         public void exportAsDrag(JComponent comp, InputEvent e, int action) {
-            NoteLabel source = (NoteLabel)comp;
-            double sourceCount = source.getIcon().getTime();
-            if(noteCount+sourceCount>12) {
-                JOptionPane.showMessageDialog(playButton, "You cannot have more than 12 beats in one row");
-                System.out.println("Too much");
-                return;
-            }
-            noteCount+=sourceCount;
+            bufferLabel = (NoteLabel)comp;
+
+
             super.exportAsDrag(comp, e, action);
+        }
+
+        @Override
+        public boolean canImport(TransferSupport support) {
+
+            NoteLabel target = (NoteLabel)support.getComponent();
+            NoteLabel source = bufferLabel;
+
+            double sourceCount = source.getIcon().getTime();
+            double targetCount = target.getIcon().getTime();
+
+            int targetIndex = notesPlay.indexOf(target);
+            int staffNumber = targetIndex/24;
+
+            System.out.println();
+
+            for(int i = 0; i < staffCount; i++ ){
+                System.out.print(NotesPerStaff.get(i) + " ");
+            }
+
+            System.out.println("Staff Number: " + staffNumber);
+            Double targetStaffCount = NotesPerStaff.get(staffNumber);
+            System.out.println("TargetStaffCount: " + targetStaffCount);
+            System.out.println("SourceCount: " + sourceCount);
+            System.out.println("TargetCount: " + targetCount);
+
+
+            if(targetStaffCount + sourceCount - targetCount > 12){
+
+                return false;
+
+            }
+            else{
+                return true;
+            }
         }
 
         @Override
         public boolean importData(TransferSupport support){
             NoteLabel target = (NoteLabel)support.getComponent();
+            NoteLabel source = bufferLabel;
+            double sourceCount = source.getIcon().getTime();
             double targetCount = target.getIcon().getTime();
-            int targetIndex = notesPlay.indexOf(target);
-            noteCount-=targetCount;
-            System.out.println("Replaced: " + target.getIcon().getNoteName());
-            System.out.println("Its index is: " + targetIndex);
-            System.out.println("Sum of notes: " + noteCount);
 
-            return super.importData(support);
+            int targetIndex = notesPlay.indexOf(target);
+            int staffNumber = targetIndex/24;
+            Double targetStaffCount = NotesPerStaff.get(staffNumber);
+
+            targetStaffCount = targetStaffCount + sourceCount - targetCount;
+            NotesPerStaff.set(staffNumber, targetStaffCount);
+                return super.importData(support);
+
         }
 
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
+
             checkWidth();
             super.exportDone(source, data, action);
 
@@ -598,7 +655,9 @@ public class MusicForm extends JFrame{
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(MusicForm::new);
     }
 
@@ -606,6 +665,7 @@ public class MusicForm extends JFrame{
         makeGUI();
     }
 
+    //TODO: IMPLEMENT CHECKWIDTH and COMPRESSED
 
 
 }
