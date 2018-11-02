@@ -42,7 +42,8 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Play"/>
+              <font name="SansSerif" size="16" style="1"/>
+              <text value="PLAY"/>
             </properties>
           </component>
           <component id="1f7a" class="javax.swing.JButton" binding="addButton">
@@ -50,7 +51,8 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Add row"/>
+              <font name="SansSerif" size="16" style="1"/>
+              <text value="ADD "/>
             </properties>
           </component>
           <component id="5870c" class="javax.swing.JButton" binding="stopButton">
@@ -58,7 +60,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Stop"/>
+              <font name="SansSerif" size="16" style="1"/>
+              <text value="STOP"/>
             </properties>
           </component>
         </children>

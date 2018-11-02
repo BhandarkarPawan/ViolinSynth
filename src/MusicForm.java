@@ -56,6 +56,8 @@ public class MusicForm extends JFrame{
     private JButton playButton;
     private JPanel staffPanel;
 
+    private Timer t;
+
     //This map will hold the NoteIcon objects for each note
     private HashMap<String, NoteIcon> noteMap;
 
@@ -124,12 +126,12 @@ public class MusicForm extends JFrame{
 
         playButton.addActionListener(e -> {
             String command = playButton.getText();
-            if (command.equals("Pause")){
-                playButton.setText("Play");
+            if (command.equals("PAUSE")){
+                playButton.setText("PLAY");
                 paused = true;
             }
             else {
-                playButton.setText("Pause");
+                playButton.setText("PAUSE");
                 if(!finished){
                     paused = false;
                 }
@@ -143,7 +145,7 @@ public class MusicForm extends JFrame{
                     }
 
                     System.out.println("Entered onAction");
-                    Timer t = new Timer(250, e1 -> {
+                    t = new Timer(250, e1 -> {
                         finished = false;
                         //TODO: Only iterate till the last legit index
                         if (timerI < (staffCount) * 24) {
@@ -162,8 +164,7 @@ public class MusicForm extends JFrame{
                             }
                         } else {
                             finished = true;
-                            playButton.setText("Play");
-                            Timer t1 = (Timer) e1.getSource();
+                            playButton.setText("PLAY");
                             for (int i = 0; i < (staffCount) * 24; i++) {
                                 int staffNumber = i / 24;
                                 int noteNumber = i % 24;
@@ -174,7 +175,7 @@ public class MusicForm extends JFrame{
                                 if (noteName.endsWith("S"))
                                     thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
                             }
-                            t1.stop();
+                            t.stop();
                         }
                     });
                     t.start();
@@ -183,6 +184,21 @@ public class MusicForm extends JFrame{
         });
 
         stopButton.addActionListener(e -> {
+
+            finished = true;
+            paused = false;
+            playButton.setText("PLAY");
+            for (int i = 0; i < (staffCount) * 24; i++) {
+                int staffNumber = i / 24;
+                int noteNumber = i % 24;
+                NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
+                thisNote.addMouseListener(new noDragMouseListener());
+                NoteIcon thisIcon = thisNote.getIcon();
+                String noteName = thisIcon.getNoteName();
+                if (noteName.endsWith("S"))
+                    thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
+            }
+            t.stop();
         });
 
         addButton.addActionListener(e -> {
