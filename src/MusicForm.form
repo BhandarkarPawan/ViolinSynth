@@ -2,12 +2,13 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="MusicForm">
   <grid id="27dc6" binding="root" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
     <constraints>
-      <xy x="101" y="99" width="608" height="559"/>
+      <xy x="111" y="49" width="608" height="606"/>
     </constraints>
     <properties>
       <maximumSize width="3" height="1"/>
       <minimumSize width="3" height="1"/>
-      <preferredSize width="640" height="580"/>
+      <opaque value="false"/>
+      <preferredSize width="640" height="610"/>
     </properties>
     <border type="none"/>
     <children>
@@ -33,7 +34,7 @@
         <constraints/>
         <properties>
           <minimumSize width="600" height="34"/>
-          <preferredSize width="600" height="34"/>
+          <preferredSize width="600" height="60"/>
         </properties>
         <border type="none"/>
         <children>
@@ -43,7 +44,9 @@
             </constraints>
             <properties>
               <font name="SansSerif" size="16" style="1"/>
-              <text value="PLAY"/>
+              <label value=""/>
+              <text value=""/>
+              <verifyInputWhenFocusTarget value="false"/>
             </properties>
           </component>
           <component id="1f7a" class="javax.swing.JButton" binding="addButton">
@@ -52,7 +55,7 @@
             </constraints>
             <properties>
               <font name="SansSerif" size="16" style="1"/>
-              <text value="ADD "/>
+              <text value=""/>
             </properties>
           </component>
           <component id="5870c" class="javax.swing.JButton" binding="stopButton">
@@ -61,7 +64,8 @@
             </constraints>
             <properties>
               <font name="SansSerif" size="16" style="1"/>
-              <text value="STOP"/>
+              <label value=""/>
+              <text value=""/>
             </properties>
           </component>
         </children>

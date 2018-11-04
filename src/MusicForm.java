@@ -40,7 +40,8 @@ public class MusicForm extends JFrame{
 
     private ArrayList<JLabel> staff;
     private ArrayList<NoteLabel> notesPlay;
-   // private ArrayList<Integer> staffWidth;
+    private ArrayList<Integer> staffWidth;
+    private ArrayList<Integer> lastIndex;
 
     /**GUI Components*/
     
@@ -67,18 +68,43 @@ public class MusicForm extends JFrame{
 
     //This map holds the time value for each time character
     private HashMap<String, Integer> charWidthMap;  // Translates time char to note width
-    //private HashMap<Double, Integer> timeMap;       // Translates time int to note width
+    private HashMap<Double, Integer> timeMap;       // Translates time int to note width
 
     private int timerI = 0;          // Timer Object that is used to run the music player
 
+    private ImageIcon play;
+    private ImageIcon pause;
+
     private void makeGUI(){
+
+
+        setTitle("ViolinSynth");
 
         noteMap  =  new HashMap<>();
         charWidthMap =  new HashMap<>();
-        //timeMap =  new HashMap<>();
+        timeMap =  new HashMap<>();
         NotesPerStaff = new ArrayList<>();
         staff = new ArrayList<>();
-        //staffWidth = new ArrayList<>();
+        staffWidth = new ArrayList<>();
+
+         play = getButton("play");
+        pause = getButton("pause");
+        ImageIcon stop = getButton("stop");
+        ImageIcon add = getButton("add");
+
+        playButton.setIcon(play);
+        stopButton.setIcon(stop);
+        addButton.setIcon(add);
+
+        playButton.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        playButton.setContentAreaFilled(false);
+
+        stopButton.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        stopButton.setContentAreaFilled(false);
+
+        addButton.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        addButton.setContentAreaFilled(false);
+
         notesPlay = new ArrayList<>();
 
         //Load all the Icons and Sound Files required for the program to run
@@ -130,16 +156,15 @@ public class MusicForm extends JFrame{
         }
 
         playButton.addActionListener(e -> {
-            String command = playButton.getText();
-            if (command.equals("PAUSE")){
+            if (playButton.getIcon() == pause){
                 // The player is paused so now, PLAY it
-                playButton.setText("PLAY");
+                playButton.setIcon(play);
                 paused = true;
             }
             else {
                 // The player is playing so now, PAUSE it
 
-                playButton.setText("PAUSE");
+                playButton.setIcon(pause);
                 if(!finished){
                     paused = false;
                 }
@@ -152,10 +177,9 @@ public class MusicForm extends JFrame{
                         thisNote.removeMouseListener(thisNote.getMouseListeners()[0]);
                     }
 
-                    System.out.println("Entered onAction");
+                  //  System.out.println("Entered onAction");
                     t = new Timer(1, e1 -> {
                         finished = false;
-                        //TODO: Only iterate till the last legit index
                         if (timerI < (staffCount) * 24) {
                             if(!paused) {
                                 // PLAYING HERE
@@ -175,23 +199,23 @@ public class MusicForm extends JFrame{
                                             noteName  = noteName.substring(0, noteName.length() - 1);
                                         }
 
-                                        System.out.println("Notes Audio/" + noteName + ".wav");
+                                      //  System.out.println("Notes Audio/" + noteName + ".wav");
                                         audioPlayer = new AudioPlayer("Notes Audio/" + noteName + ".wav");
                                         audioPlayer.play();
 
                                         while (audioPlayer.status.equals("play")) {
-                                            System.out.println("in while");
+                                           System.out.println("-playing");
                                         }
                                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e2) {
                                         e2.printStackTrace();
                                     }
-                                    System.out.print(timerI + " ");
+//                                    System.out.print(timerI + " ");
                                     timerI++;
                                 }
                             }
                         } else {
                             finished = true;
-                            playButton.setText("PLAY");
+                            playButton.setIcon(play);
                             for (int i = 0; i < (staffCount) * 24; i++) {
                                 int staffNumber = i / 24;
                                 int noteNumber = i % 24;
@@ -202,11 +226,11 @@ public class MusicForm extends JFrame{
                                 if (noteName.endsWith("S"))
                                     thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
                             }
-                            System.out.println("timer stopped");
+                          //  System.out.println("timer stopped");
                             t.stop();
                         }
                     });
-                    System.out.println("timer started ");
+                  //  System.out.println("timer started ");
                     t.start();
                 }
             }
@@ -217,7 +241,7 @@ public class MusicForm extends JFrame{
 
             finished = true;
             paused = false;
-            playButton.setText("PLAY");
+            playButton.setIcon(play);
             for (int i = 0; i < (staffCount) * 24; i++) {
                 int staffNumber = i / 24;
                 int noteNumber = i % 24;
@@ -235,13 +259,12 @@ public class MusicForm extends JFrame{
 
             // Add a new staff row
             addStaff();
-            //staffWidth.add(0);
 
             //Refresh panel to make the changes visible
             staffPanel.repaint();
             staffPanel.revalidate();
 
-            System.out.println("Number of rows: " + staffCount);
+           // System.out.println("Number of rows: " + staffCount);
         });
 
         //These are the Icons that serve as buttons to load the corresponding lists
@@ -276,21 +299,33 @@ public class MusicForm extends JFrame{
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
 
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        SwingUtilities.invokeLater(MusicForm::new);
+            SwingUtilities.invokeLater(MusicForm::new);
     }
 
     /** Constructor **/
     private MusicForm(){
+
         makeGUI();
+
     }
 
       /*=============================================HELPER METHODS==============================================*/
 
+    private ImageIcon getButton(String name){
+        ImageIcon icon= new ImageIcon(name + ".png");
+        Image playImage = icon.getImage();
+        Image newimg = playImage.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
+        icon = new ImageIcon(newimg);
+
+        return icon;
+
+    }
     /**
      * This function will add a new staff to the staffPanel.
      * Along with that, it also adds the corresponding JLabel to the staff (list)
      */
     private void addStaff(){
+        staffWidth.add(0);
         NotesPerStaff.add(0.0);  // There are currently no notes  on this staff
 
         // Add a new staff row to the list
@@ -329,11 +364,11 @@ public class MusicForm extends JFrame{
         BufferedImage img  = null;
         String NOTE_IMAGE_PATH = "Notes Images/";
         try {
-            System.out.println("ABOUT TO READ: "+ imageName+".png");
+            //System.out.println("ABOUT TO READ: "+ imageName+".png");
             img = ImageIO.read(new File(NOTE_IMAGE_PATH + imageName+".png"));
 
         } catch (IOException e) {
-            System.out.println("ERROR ACCESSING" + NOTE_IMAGE_PATH + imageName+".png\"");
+           // System.out.println("ERROR ACCESSING" + NOTE_IMAGE_PATH + imageName+".png\"");
             e.printStackTrace();
         }
         assert img != null;
@@ -364,6 +399,7 @@ public class MusicForm extends JFrame{
 
     /**This function loads all the data required for the program to work.*/
     private void loadMap(){
+
         noteMap.put("staffBase", getImage("staffBase", 0));
         noteMap.put("staffBaseS", getImage("staffBaseS", 0));
         noteMap.put("staff", getImage("staff", WIDTH_FULL));
@@ -373,11 +409,11 @@ public class MusicForm extends JFrame{
         charWidthMap.put("T", WIDTH_TWO);
         charWidthMap.put("F", WIDTH_FOUR);
 
-//        timeMap.put(0.5, WIDTH_HALF);
-//        timeMap.put(1., WIDTH_ONE);
-//        timeMap.put(2., WIDTH_TWO);
-//        timeMap.put(4., WIDTH_FOUR);
-//        timeMap.put(0., WIDTH_HALF);
+        timeMap.put(0.5, WIDTH_HALF);
+        timeMap.put(1., WIDTH_ONE);
+        timeMap.put(2., WIDTH_TWO);
+        timeMap.put(4., WIDTH_FOUR);
+        timeMap.put(0., WIDTH_HALF);
 
         Set<String> set = new HashSet<>();
 
@@ -438,7 +474,7 @@ public class MusicForm extends JFrame{
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    System.out.println("released");
+                //    System.out.println("released");
 
                 }
 
@@ -471,18 +507,90 @@ public class MusicForm extends JFrame{
 
 
     /**This function checks the width to see if anything is off screen*/
-    private void checkWidth(){
+    private void checkWidth() {
 
-        //TODO: Add code
-        compress();
+        lastIndex = new ArrayList<>();
+
+        for (int i = 0; i < staffCount; i++) {
+            lastIndex.add(-1);
+        }
+
+        for (int i = 0; i < notesPlay.size(); i++) {
+            if (!notesPlay.get(i).getIcon().getNoteName().equals("staffBase")) {
+                int staffNumber = i / 24;
+                int noteNumber = i % 24;
+                lastIndex.set(staffNumber, noteNumber);
+            }
+        }
+
+        //System.out.print("\nCHECKING WIDTH: ");
+//        for (int i : lastIndex) {
+//            System.out.print(i + " ");
+//        }
+
+        for (int i = 0; i < staffCount; i++) {
+            staffWidth.set(i, 0);
+            int newWidth = 0;
+          //  System.out.println("\nNotes up to last note are: ");
+            for (int j = 0; j <= lastIndex.get(i); j++) {
+                int k = i*24+j;
+//                System.out.print(notesPlay.get(k).getIcon().getTime() + " : "
+//                        + timeMap.get(notesPlay.get(k).getIcon().getTime()) + "| ");
+                newWidth += staffWidth.get(i) + timeMap.get(notesPlay.get(k).getIcon().getTime());
+            }
+            staffWidth.set(i, newWidth);
+//            System.out.println("Total : " + newWidth);
+            if (newWidth > WIDTH_FULL) {
+                compress(i);
+            }
+        }
     }
 
     /**
      * This function compresses the contents of the staff
      * This is done to ensure that no notes go off the screen
      */
-    private void compress(){
-        //TODO: Add code
+    private void compress(int staffNumber){
+        JLabel currentStaff = staff.get(staffNumber);
+
+//        System.out.println("Original notesPlay");
+//        for(int i = 0; i < notesPlay.size();i++){
+//            if(i%24 == 0)
+//                System.out.println();
+//            System.out.print(notesPlay.get(i).getIcon().getTime()+ "  ");
+//
+//        }
+
+//        System.out.println("\nCompressing");
+
+        int staffFirst = staffNumber*24;
+        int staffLast = staffNumber*24+ lastIndex.get(staffNumber);
+//        System.out.println("\nStaff first: " + staffFirst);
+//        System.out.println("Staff last: " + staffLast);
+
+//        System.out.println("\ncompress() called ");
+        for(int i =staffFirst; i< staffLast; i++){
+            NoteLabel currentLabel = notesPlay.get(i);
+            if(currentLabel.getIcon().getNoteName().equals("staffBase")){
+                currentStaff.remove(currentLabel);
+                currentStaff.add(currentLabel);
+                currentStaff.repaint();
+                currentStaff.revalidate();
+            }
+        }
+
+
+        for(int i= staffFirst; i <= staffLast; i ++ ){
+            NoteLabel replacementLabel = (NoteLabel) staff.get(staffNumber).getComponent(i%24);
+            notesPlay.set(i,replacementLabel );
+        }
+
+//        System.out.println("compressed notesPlay: ");
+//        for(int i = 0; i < notesPlay.size();i++){
+//            if(i%24 == 0)
+//                System.out.println();
+//            System.out.print(notesPlay.get(i).getIcon().getTime()+ "  ");
+//        }
     }
 
     /*==============================================CLASS DEFINITIONS=============================================*/
@@ -498,9 +606,6 @@ public class MusicForm extends JFrame{
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-
-
-
         }
 
         @Override
@@ -521,22 +626,20 @@ public class MusicForm extends JFrame{
                     NoteLabel thisNote = (NoteLabel)e.getSource();
                     NoteIcon thisIcon = thisNote.getIcon();
 
-                    System.out.println("Notes Audio/" + thisIcon.getNoteName() + ".wav");
+                  //  System.out.println("Notes Audio/" + thisIcon.getNoteName() + ".wav");
                     String noteName =  thisIcon.getNoteName() ;
                     if(noteName.endsWith("S")){
                         noteName = noteName.substring(0, noteName.length() - 1);
-
                     }
                     audioPlayer = new AudioPlayer("Notes Audio/" +noteName+ ".wav");
                     audioPlayer.play();
 
                     while (audioPlayer.status.equals("play")) {
-                        System.out.println("in while");
+                        System.out.print("-playing-");
                     }
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e2) {
                     e2.printStackTrace();
                 }
-                // DO YOUR ACTION HERE
             }
             else{
 
@@ -660,26 +763,26 @@ public class MusicForm extends JFrame{
 
             NoteLabel source = bufferLabel;
 
-            double sourceCount = source.getIcon().getTime();
-            double targetCount = target.getIcon().getTime();
+            int sourceCount = timeMap.get(source.getIcon().getTime());
+            int targetCount = timeMap.get(target.getIcon().getTime());
 
             int targetIndex = notesPlay.indexOf(target);
             int staffNumber = targetIndex/24;
 
-            System.out.println();
+//            System.out.println("Notes Per staff: ");
 
-            for(int i = 0; i < staffCount; i++ ){
-                System.out.print(NotesPerStaff.get(i) + " ");
-            }
+//            for(int i = 0; i < staffCount; i++ ){
+//                System.out.print(NotesPerStaff.get(i) + " ");
+//            }
 
-            System.out.println("Staff Number: " + staffNumber);
-            Double targetStaffCount = NotesPerStaff.get(staffNumber);
-            System.out.println("TargetStaffCount: " + targetStaffCount);
-            System.out.println("SourceCount: " + sourceCount);
-            System.out.println("TargetCount: " + targetCount);
+//            System.out.println("Staff Number: " + staffNumber);
+//            Double targetStaffCount = NotesPerStaff.get(staffNumber);
+//            System.out.println("TargetStaffCount: " + targetStaffCount);
+//            System.out.println("SourceCount: " + sourceCount);
+//            System.out.println("TargetCount: " + targetCount);
 
 
-            return !(targetStaffCount + sourceCount - targetCount > 12);
+            return staffWidth.get(staffNumber) + sourceCount - targetCount <= 600;
         }
 
         @Override
