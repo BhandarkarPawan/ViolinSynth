@@ -1,15 +1,17 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
-import java.awt.event.*;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class MusicForm extends JFrame{
 
@@ -25,6 +27,8 @@ public class MusicForm extends JFrame{
     // Keep track of the current player status 
     private boolean paused = false;
     private boolean finished = true;
+
+    private AudioPlayer audioPlayer;
     
     //Width that the note takes up on each note
     private static final int
@@ -87,17 +91,18 @@ public class MusicForm extends JFrame{
         addStaff();
         addStaff();
         addStaff();
-        
-        NoteLabel[] notesHalf = new NoteLabel[11];
+
+
+        NoteLabel[] notesHalf = new NoteLabel[12];
         initNotes(notesHalf, "h");
 
-        NoteLabel[] notesOne = new NoteLabel[11];
+        NoteLabel[] notesOne = new NoteLabel[12];
         initNotes(notesOne, "O");
 
-        NoteLabel[] notesTwo = new NoteLabel[11];
+        NoteLabel[] notesTwo = new NoteLabel[12];
         initNotes(notesTwo, "T");
 
-        NoteLabel[] notesFour = new NoteLabel[11];
+        NoteLabel[] notesFour = new NoteLabel[12];
         initNotes(notesFour, "F");
 
         setContentPane(root);
@@ -117,7 +122,7 @@ public class MusicForm extends JFrame{
         PanelFour.setLayout(new BoxLayout(PanelFour, BoxLayout.LINE_AXIS));
 
         // Initialize all the panels with notes for later use
-        for(int i =0;i<11;i++) {
+        for(int i =0;i<12;i++) {
             PanelHalf.add(notesHalf[i]);
             PanelOne.add(notesOne[i]);
             PanelTwo.add(notesTwo[i]);
@@ -127,10 +132,13 @@ public class MusicForm extends JFrame{
         playButton.addActionListener(e -> {
             String command = playButton.getText();
             if (command.equals("PAUSE")){
+                // The player is paused so now, PLAY it
                 playButton.setText("PLAY");
                 paused = true;
             }
             else {
+                // The player is playing so now, PAUSE it
+
                 playButton.setText("PAUSE");
                 if(!finished){
                     paused = false;
@@ -145,22 +153,41 @@ public class MusicForm extends JFrame{
                     }
 
                     System.out.println("Entered onAction");
-                    t = new Timer(250, e1 -> {
+                    t = new Timer(1, e1 -> {
                         finished = false;
                         //TODO: Only iterate till the last legit index
                         if (timerI < (staffCount) * 24) {
                             if(!paused) {
+                                // PLAYING HERE
                                 int staffNumber = timerI / 24;
                                 int noteNumber = timerI % 24;
                                 NoteLabel thisNote = (NoteLabel) staff.get(staffNumber).getComponent(noteNumber);
                                 NoteIcon thisIcon = thisNote.getIcon();
                                 String noteName = thisIcon.getNoteName();
                                 thisNote.setIcon(noteMap.get(noteName + "S"));
-                                //                    Timer t1 = (Timer)e1.getSource();
-                                //                    System.out.print((int)(thisNote.getIcon().getTime()*1000)+ " ");
-                                //                    t1.setDelay((int)(thisNote.getIcon().getTime()*1000));
-                                timerI++;
-                                System.out.print(timerI + " ");
+
+                                if(noteName.equals("staffBase") ||noteName.equals("staffBaseS") ){
+                                    timerI++;
+                                }
+                                else {
+                                    try {
+                                        if(noteName.endsWith("S")){
+                                            noteName  = noteName.substring(0, noteName.length() - 1);
+                                        }
+
+                                        System.out.println("Notes Audio/" + noteName + ".wav");
+                                        audioPlayer = new AudioPlayer("Notes Audio/" + noteName + ".wav");
+                                        audioPlayer.play();
+
+                                        while (audioPlayer.status.equals("play")) {
+                                            System.out.println("in while");
+                                        }
+                                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e2) {
+                                        e2.printStackTrace();
+                                    }
+                                    System.out.print(timerI + " ");
+                                    timerI++;
+                                }
                             }
                         } else {
                             finished = true;
@@ -175,13 +202,16 @@ public class MusicForm extends JFrame{
                                 if (noteName.endsWith("S"))
                                     thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
                             }
+                            System.out.println("timer stopped");
                             t.stop();
                         }
                     });
+                    System.out.println("timer started ");
                     t.start();
                 }
             }
         });
+
 
         stopButton.addActionListener(e -> {
 
@@ -241,6 +271,7 @@ public class MusicForm extends JFrame{
         setVisible(true);
     }
 
+
     /** Main Function **/
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
 
@@ -298,6 +329,7 @@ public class MusicForm extends JFrame{
         BufferedImage img  = null;
         String NOTE_IMAGE_PATH = "Notes Images/";
         try {
+            System.out.println("ABOUT TO READ: "+ imageName+".png");
             img = ImageIO.read(new File(NOTE_IMAGE_PATH + imageName+".png"));
 
         } catch (IOException e) {
@@ -329,6 +361,7 @@ public class MusicForm extends JFrame{
         return new NoteIcon(img.getScaledInstance(width, HEIGHT, Image.SCALE_SMOOTH), imageName, time);
     }
 
+
     /**This function loads all the data required for the program to work.*/
     private void loadMap(){
         noteMap.put("staffBase", getImage("staffBase", 0));
@@ -352,6 +385,8 @@ public class MusicForm extends JFrame{
         set.add("E");
         set.add("F");
         set.add("G");
+        set.add("A");
+
 
         String[] CHAR = {"A","B","C","D","E","F","G"};
          String[] TIME = {"h", "O", "T", "F"};
@@ -381,19 +416,21 @@ public class MusicForm extends JFrame{
      */
     private void initNotes(NoteLabel[] notes, String t){
 
-        String[] CHAR = {"A"+t, "B"+t,"C"+t,"D"+t,"E"+t,"F"+t,
-                "G"+t,"D"+t+"2","E"+t+"2","F"+t+"2","G"+t+"2"};
+        String[] CHAR = {"D"+t,"E"+t,"F"+t,"G"+t,"A"+t, "B"+t,"C"+t,"D"+t+"2","E"+t+"2","F"+t+"2","G"+t+"2", "A"+t+"2"};
 
-        for(int i = 0; i < 11;i++){
+
+        for(int i = 0; i < 12;i++){
             notes[i] = new NoteLabel();
             notes[i].setIcon(noteMap.get(CHAR[i]));
             notes[i].addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
+
                     NoteLabel jc = (NoteLabel)e.getSource();
                     TransferHandler th = jc.getTransferHandler();
                     th.exportAsDrag(jc, e, TransferHandler.COPY);
@@ -401,21 +438,37 @@ public class MusicForm extends JFrame{
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
+                    System.out.println("released");
 
                 }
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
+                    //Highlight on mouseover
+                    NoteLabel thisNote = (NoteLabel)e.getSource();
+                    NoteIcon thisIcon = thisNote.getIcon();
+                    String noteName = thisIcon.getNoteName();
+                    if(!noteName.endsWith("S"))
+                        thisNote.setIcon(noteMap.get(noteName + "S"));
+
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
+                    //un-highlight on mouse exit
+                    NoteLabel thisNote = (NoteLabel)e.getSource();
+                    NoteIcon thisIcon = thisNote.getIcon();
+                    String noteName = thisIcon.getNoteName();
+                    if(noteName.endsWith("S"))
+                        thisNote.setIcon(noteMap.get(noteName.substring(0, noteName.length() - 1)));
                 }
 
             });
             notes[i].setTransferHandler(new myHandler("icon"));
         }
     }
+
+
 
     /**This function checks the width to see if anything is off screen*/
     private void checkWidth(){
@@ -435,34 +488,73 @@ public class MusicForm extends JFrame{
     /*==============================================CLASS DEFINITIONS=============================================*/
     class noDragMouseListener implements MouseListener{
 
+
+        Date pressedTime;
+        long timeClicked;
+
         /**
          * This is used for staff where dragging isn't allowed but clicking is.
          * We use this instead of the ActionListener for the highlight on mouseover
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //Remove the current note and replace it with the default
-            NoteLabel thisNote = (NoteLabel)e.getSource();
 
-            int targetIndex = notesPlay.indexOf(thisNote);
-            Double targetCount = thisNote.getIcon().getTime();
 
-            int staffNum = targetIndex/24;
-            Double targetStaffCount = NotesPerStaff.get(staffNum);
-            targetStaffCount-= targetCount;
-            NotesPerStaff.set(staffNum, targetStaffCount);
 
-            thisNote.setIcon(noteMap.get("staffBaseS"));
-            checkWidth();
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
 
+            pressedTime = new Date();
+
+
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
+
+            timeClicked = new Date().getTime() - pressedTime.getTime();
+            if (timeClicked >= 500) {
+
+                try {
+                    NoteLabel thisNote = (NoteLabel)e.getSource();
+                    NoteIcon thisIcon = thisNote.getIcon();
+
+                    System.out.println("Notes Audio/" + thisIcon.getNoteName() + ".wav");
+                    String noteName =  thisIcon.getNoteName() ;
+                    if(noteName.endsWith("S")){
+                        noteName = noteName.substring(0, noteName.length() - 1);
+
+                    }
+                    audioPlayer = new AudioPlayer("Notes Audio/" +noteName+ ".wav");
+                    audioPlayer.play();
+
+                    while (audioPlayer.status.equals("play")) {
+                        System.out.println("in while");
+                    }
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e2) {
+                    e2.printStackTrace();
+                }
+                // DO YOUR ACTION HERE
+            }
+            else{
+
+
+                //Remove the current note and replace it with the default
+                NoteLabel thisNote = (NoteLabel)e.getSource();
+
+                int targetIndex = notesPlay.indexOf(thisNote);
+                Double targetCount = thisNote.getIcon().getTime();
+
+                int staffNum = targetIndex/24;
+                Double targetStaffCount = NotesPerStaff.get(staffNum);
+                targetStaffCount-= targetCount;
+                NotesPerStaff.set(staffNum, targetStaffCount);
+
+                thisNote.setIcon(noteMap.get("staffBase"));
+                checkWidth();
+            }
 
         }
 
@@ -498,7 +590,7 @@ public class MusicForm extends JFrame{
          */
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
             //Upon selection, load the corresponding panel of notes
             selectedPanel.removeAll();
             selectedPanel.revalidate();
@@ -510,24 +602,31 @@ public class MusicForm extends JFrame{
             switch (noteName){
                 case "hS":
                     selectedPanel.add(PanelHalf);
-                    selectedPanel.setPreferredSize(new Dimension(275,100));
+                    selectedPanel.setPreferredSize(new Dimension(WIDTH_HALF*12,100));
                     break;
                 case "OS":
                     selectedPanel.add(PanelOne);
-                    selectedPanel.setPreferredSize(new Dimension(550,100));
+                    selectedPanel.setPreferredSize(new Dimension(WIDTH_ONE*12,100));
 
                     break;
                 case "TS":
                     selectedPanel.add(PanelTwo);
-                    selectedPanel.setPreferredSize(new Dimension(825,100));
+                    selectedPanel.setPreferredSize(new Dimension(WIDTH_TWO*12,100));
 
                     break;
                 case "FS":
                     selectedPanel.add(PanelFour);
-                    selectedPanel.setPreferredSize(new Dimension(1100,100));
+                    selectedPanel.setPreferredSize(new Dimension(WIDTH_FOUR*12,100));
 
                     break;
             }
+
+        }
+
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
         }
     }
 
@@ -554,6 +653,11 @@ public class MusicForm extends JFrame{
         public boolean canImport(TransferSupport support) {
 
             NoteLabel target = (NoteLabel)support.getComponent();
+            if(target.getParent().getParent() == selectedPanel)
+            {
+                return false;
+            }
+
             NoteLabel source = bufferLabel;
 
             double sourceCount = source.getIcon().getTime();
@@ -592,7 +696,6 @@ public class MusicForm extends JFrame{
             targetStaffCount = targetStaffCount + sourceCount - targetCount;
             NotesPerStaff.set(staffNumber, targetStaffCount);
                 return super.importData(support);
-
         }
 
         @Override
